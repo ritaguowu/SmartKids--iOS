@@ -9,9 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+         ZStack{
+             Image("ic_splash_background")
+                 .resizable()
+                 .aspectRatio( contentMode: .fill)
+                 .edgesIgnoringSafeArea(.all)
+             VStack {
+                 Text("SmartKids")
+                     .font(Font.custom("sacramento", size: 50))
+                     .foregroundColor(Color.white)
+                     .bold()
+                 .padding()
+             
+             }
+         }
+
     }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {

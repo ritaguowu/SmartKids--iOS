@@ -51,7 +51,6 @@ extension View{
 
                 NavigationLink(
                     destination: view
-                        .navigationBarTitle("")
                         .navigationBarHidden(true),
                     isActive: binding
                 ) {
@@ -59,7 +58,6 @@ extension View{
                 }
             }
         }
-        .navigationViewStyle(.stack)
     }
     
     func textViewStyle() -> some View{

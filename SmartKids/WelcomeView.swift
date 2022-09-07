@@ -12,7 +12,7 @@ struct WelcomeView: View {
     @State private var showSignIn: Bool = false;
     
     var body: some View {
-        NavigationView{
+
              VStack {
                  Text("SmartKids")
                      .font(Font.custom("sacramento", size: 50))
@@ -52,8 +52,9 @@ struct WelcomeView: View {
                  }
                  
              }.padding(.bottom, 100)
+
          }
-    }
+
 }
 
 struct WelcomeView_Previews: PreviewProvider {

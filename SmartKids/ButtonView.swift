@@ -11,10 +11,7 @@ struct ButtonView: View {
     
     let text: String
     
-    var body: some View {
-        Button{
-            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-        } label:{
+    var body: some View {        
             Text(text)
                 .bold()
                 .frame(width: 350, height: 50)
@@ -23,8 +20,7 @@ struct ButtonView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                     .stroke(Color.white, lineWidth: 2))
-        }
-        .cornerRadius(15)
+        
     }
 }
 

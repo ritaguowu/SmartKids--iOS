@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ParentView: View {
+    
     var body: some View {
+
         TabView{
             KidsView()
                 .tabItem{
@@ -25,6 +27,7 @@ struct ParentView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Setting")
                 }
+            
         }
     }
 }

@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @State private var showSignUp: Bool = false;
+    @State private var showSignIn: Bool = false;
+    
     var body: some View {
-
+        NavigationView{
              VStack {
                  Text("SmartKids")
                      .font(Font.custom("sacramento", size: 50))
@@ -27,18 +30,31 @@ struct WelcomeView: View {
                      .fontWeight(.black)
                  .padding(25)
                  
-                 
-                 ButtonView(text: "Create parent account")
+                 VStack{
+                     Group{
+                         Button(){
+                             showSignUp = true
+                                 } label:{
+                                     ButtonView(text: "Create parent account")
+                                 }.cornerRadius(15)
+                         NavigationLink(destination: SignUpView(), isActive: $showSignUp){
+                         }
+                     }.padding(.bottom, 10)
                      
+                     
+                     Group{
+                         Button("I have an account") {
+                             showSignIn = true
+                         }
+                         NavigationLink(destination: SignInView(), isActive: $showSignIn){
+                         }
+                     }
+                 }
                  
-                 Button("I have an account") {
-                     /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-                 }.padding(.all)
-                 
-
-             }
+             }.padding(.bottom, 100)
          }
     }
+}
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {

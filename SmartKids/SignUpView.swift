@@ -18,6 +18,7 @@ struct SignUpView: View {
             Spacer()
             Text("Enter your name, email id and password, to register with us!")
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(25)
             Spacer()
             
@@ -32,12 +33,16 @@ struct SignUpView: View {
                 .textViewStyle()
 
             
-            TextField("Password", text: $password)
+            SecureField("Password", text: $password)
                 .padding()
                 .textViewStyle()
 
  
-            ButtonView(text: "Sign Up")
+            Button(){
+                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+            } label:{
+                ButtonView(text: "Sign Up")
+            }.cornerRadius(15)
                 .padding(30)
 
             Spacer(minLength: 180)
@@ -62,11 +67,6 @@ struct ShadowViewModifier: ViewModifier{
     }
 }
 
-extension View{
-    func textViewStyle() -> some View{
-        modifier(ShadowViewModifier())
-    }
-}
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {

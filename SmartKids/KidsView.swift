@@ -16,5 +16,6 @@ struct KidsView: View {
 struct KidsView_Previews: PreviewProvider {
     static var previews: some View {
         KidsView()
+        
     }
 }

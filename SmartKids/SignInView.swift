@@ -8,31 +8,36 @@
 import SwiftUI
 
 struct SignInView: View {
-    
-    @State var email = ""
-    @State var password = ""
+
+    //    @Binding var isShow: Bool
+    @StateObject private var loginVM = LoginViewModel()
     
     var body: some View {
         VStack {
             Spacer()
             Text("Please enter your email and password")
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(25)
             Spacer()
 
             
-            TextField("Email", text: $email)
+            TextField("Email", text: $loginVM.email)
                 .padding()
                 .textViewStyle()
 
             
-            TextField("Password", text: $password)
+            SecureField("Password", text: $loginVM.password)
                 .padding()
                 .textViewStyle()
 
  
-            ButtonView(text: "Sign In")
-                .padding(30)
+            Button(){
+                loginVM.login()
+            } label:{
+                ButtonView(text: "Sign In")
+            }.cornerRadius(15)
+            .padding(30)
 
             Spacer(minLength: 250)
         

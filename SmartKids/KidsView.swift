@@ -8,10 +8,67 @@
 import SwiftUI
 
 struct KidsView: View {
+    @StateObject private var loginVM = LoginViewModel()
+    @StateObject private var kidsListVM = KidsListViewModel()
+    
+    @AppStorage("userName") private var user_name = ""
+    @AppStorage("email") private var email = ""
+    
+    
     var body: some View {
-        Text("Kids")
+        ZStack{
+            Color("Secondary")
+        
+        VStack{
+            HStack{
+                Image("default_user")
+                    .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 60)
+                    .clipShape(Circle())
+
+                VStack{
+                    Text("\(user_name)")
+                    Text("\(email)")
+                }.foregroundColor(Color.white)
+                
+                Spacer()
+            }.background(Color("Secondary"))
+            .padding(30)
+            .onAppear{
+                    kidsListVM.getAllKids()
+                }
+
+            
+                if kidsListVM.kids.count > 0{
+
+                    List{
+                        ForEach(kidsListVM.kids, id: \.id) { kid in
+                        HStack{
+                            Image("default_kid")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 50, height: 70)
+                                .clipShape(Circle())
+
+                            Text("\(kid.user_name)")
+                                .foregroundColor(Color.white)
+                            
+                        }
+                        }.listRowBackground(Color("Primary"))
+                            
+                    }
+
+                }else{
+                    Text("No kid has been found!")
+                        .foregroundColor(Color.white)
+                }
+            Spacer()
+        }
+        }
     }
 }
+
 
 struct KidsView_Previews: PreviewProvider {
     static var previews: some View {

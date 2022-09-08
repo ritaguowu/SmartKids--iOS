@@ -16,6 +16,7 @@ struct User: Codable, CustomStringConvertible{
     let image: String
     let parentId: String
     let access_token: String
+
     
     var description: String{
         "User{" +
@@ -29,3 +30,5 @@ struct User: Codable, CustomStringConvertible{
                         "}"
     }
 }
+
+

@@ -8,6 +8,7 @@
 import Foundation
 
 class LoginViewModel: ObservableObject{
+    @Published var userName:String = ""
     @Published var email: String = ""
     @Published var password: String = ""
     
@@ -16,17 +17,23 @@ class LoginViewModel: ObservableObject{
     
     func login(){
         
-        let deaults = UserDefaults.standard
+        let defaults = UserDefaults.standard
         
-        Webservice().login(email: email, password: password){ result in
+        Webservice().signIn(email: email, password: password){ result in
             
             switch result{
                 case .success(let user):
-                print(user)
-                deaults.setValue(user.access_token, forKey: "jwtToken")
+//                print(user)
+                defaults.setValue(user.access_token, forKey: "jwtToken")
+                defaults.setValue(user._id, forKey: "parentId")
+                
                 //Switch back to main thread
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
+//                    defaults.set(user, forKey: "currentUser")
+                    
+//                    defaults.set(user.user_name, forKey: "userName")
+//                    defaults.set(user.email, forKey: "email")
                 }
                 
         
@@ -34,6 +41,15 @@ class LoginViewModel: ObservableObject{
                     print(error.localizedDescription)
             }
             
+        }
+    }
+    
+    func signout(){
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "jwtToken")
+        defaults.removeObject(forKey: "parentId")
+        DispatchQueue.main.async {
+            self.isAuthenticated = false
         }
     }
     

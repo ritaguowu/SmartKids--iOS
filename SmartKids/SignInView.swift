@@ -10,6 +10,7 @@ import SwiftUI
 struct SignInView: View {
 
     @StateObject private var loginVM = LoginViewModel()
+    @StateObject private var kidsListVM = KidsListViewModel()
     @State private var isFirstLogin = true
     
     var body: some View {
@@ -23,7 +24,7 @@ struct SignInView: View {
                  
                 Spacer()
     
-                 Text((isFirstLogin && !loginVM.isAuthenticated) ? "" : "Sorry, password is not correct!")
+                 Text((self.isFirstLogin && !loginVM.isAuthenticated) ? "" : "Sorry, the user is not correct!")
                      .foregroundColor(Color.red)
                  
                 TextField("Email", text: $loginVM.email)
@@ -36,14 +37,17 @@ struct SignInView: View {
                  
                  
                 Button(){
+                    self.isFirstLogin = false
                     loginVM.login()
-                    isFirstLogin = false
+            
                 } label:{
                     ButtonView(text: "Sign In")
                 }.cornerRadius(15)
                 .padding(30)
                  //.sheet mode: which you can pull down the screen and close it
+                 //.fullScreenCover
                 .fullScreenCover(isPresented: $loginVM.isAuthenticated){
+                    
                     ParentView()
                 }
 

@@ -11,6 +11,8 @@ struct WelcomeView: View {
     @State private var showSignUp: Bool = false;
     @State private var showSignIn: Bool = false;
     
+    @StateObject private var loginVM = LoginViewModel()
+    
     var body: some View {
 
              VStack {
@@ -38,6 +40,7 @@ struct WelcomeView: View {
                                      ButtonView(text: "Create parent account")
                                  }.cornerRadius(15)
                          NavigationLink(destination: SignUpView(), isActive: $showSignUp){
+                             EmptyView()
                          }
                      }.padding(.bottom, 10)
                      
@@ -46,12 +49,17 @@ struct WelcomeView: View {
                          Button("I have an account") {
                              showSignIn = true
                          }
+//
+//                         NavigationLink(destination: ParentView(), isActive: $loginVM.isAuthenticated){
+//                         }
+                         
                          NavigationLink(destination: SignInView(), isActive: $showSignIn){
+                             EmptyView()
                          }
                      }
                  }
                  
-             }.padding(.bottom, 100)
+             }.padding(.bottom, 50)
 
          }
 

@@ -9,7 +9,7 @@ import Foundation
 
 class KidsListViewModel: ObservableObject{
     
-    @Published var kids: [KidViewModel] = []
+    @Published var kids: [KidVM] = []
     
     func getAllKids(){
         let defaults = UserDefaults.standard
@@ -22,13 +22,14 @@ class KidsListViewModel: ObservableObject{
             return
         }
         
-        Webservice().getAllKids(token: token, parentId: parentId ){
+        Webservice_Parent().getAllKids(token: token, parentId: parentId ){
             (result) in
             switch result{
             case .success(let kids):
                 print(kids)
                 DispatchQueue.main.async {
-                    self.kids = kids.map(KidViewModel.init)
+                    self.kids = kids.map(KidVM.init)
+                    encodeObjectArray(kids: kids, key: "Kids")
                 }
             
             case .failure(let error):
@@ -50,7 +51,7 @@ class KidsListViewModel: ObservableObject{
             return
         }
         
-        Webservice().getParent(token: token, parentId: parentId){ result in
+        Webservice_Parent().getParent(token: token, parentId: parentId){ result in
             
             switch result{
                 case .success(let user):

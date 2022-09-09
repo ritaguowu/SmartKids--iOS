@@ -11,9 +11,8 @@ struct KidsView: View {
     @StateObject private var loginVM = LoginViewModel()
     @StateObject private var kidsListVM = KidsListViewModel()
     
-    @AppStorage("userName") private var user_name = ""
-    @AppStorage("email") private var email = ""
     
+    let parent = decodeObject(key: "parent")
     
     var body: some View {
         ZStack{
@@ -28,8 +27,8 @@ struct KidsView: View {
                     .clipShape(Circle())
 
                 VStack{
-                    Text("\(user_name)")
-                    Text("\(email)")
+                    Text("\(parent.user_name)")
+                    Text("\(parent.email)")
                 }.foregroundColor(Color.white)
                 
                 Spacer()
@@ -44,21 +43,23 @@ struct KidsView: View {
 
                     List{
                         ForEach(kidsListVM.kids, id: \.id) { kid in
-                        HStack{
-                            Image("default_kid")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 70)
-                                .clipShape(Circle())
+                            Button(action: {
+                                
+                            }){
+                                HStack{
+                                    Image("default_kid")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 70)
+                                        .clipShape(Circle())
 
-                            Text("\(kid.user_name)")
-                                .foregroundColor(Color.white)
-                            
+                                    Text("\(kid.user_name)")
+                                        .foregroundColor(Color.white)
+                                    
+                                }
+                            }.listRowBackground(Color("Primary"))
                         }
-                        }.listRowBackground(Color("Primary"))
-                            
                     }
-
                 }else{
                     Text("No kid has been found!")
                         .foregroundColor(Color.white)

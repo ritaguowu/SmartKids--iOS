@@ -11,7 +11,7 @@
 		6608272228C6A7810083E360 /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272128C6A7810083E360 /* KidsView.swift */; };
 		6608272428C6A7AE0083E360 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272328C6A7AE0083E360 /* MyProfileView.swift */; };
 		6608272628C6A7D20083E360 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272528C6A7D20083E360 /* PointsView.swift */; };
-		6608272928C7F1170083E360 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272828C7F1170083E360 /* Webservice.swift */; };
+		6608272928C7F1170083E360 /* Webservice_Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272828C7F1170083E360 /* Webservice_Parent.swift */; };
 		6608272C28C7F7B30083E360 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272B28C7F7B30083E360 /* User.swift */; };
 		6608272F28C7FA1C0083E360 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272E28C7FA1C0083E360 /* LoginViewModel.swift */; };
 		661CC84628C46C8C008DC13E /* SmartKidsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661CC84528C46C8C008DC13E /* SmartKidsApp.swift */; };
@@ -20,9 +20,12 @@
 		661CC84D28C46C8D008DC13E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 661CC84C28C46C8D008DC13E /* Preview Assets.xcassets */; };
 		661CC85728C46D28008DC13E /* sacramento.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 661CC85528C46D28008DC13E /* sacramento.ttf */; };
 		661CC85A28C4744A008DC13E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661CC85928C4744A008DC13E /* WelcomeView.swift */; };
+		6659F57D28CA9D200029B6AF /* Webservice_Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659F57C28CA9D200029B6AF /* Webservice_Kid.swift */; };
+		6659F57F28CAD1B50029B6AF /* KidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659F57E28CAD1B50029B6AF /* KidViewModel.swift */; };
+		6659F58128CAEB460029B6AF /* KidPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659F58028CAEB460029B6AF /* KidPlayView.swift */; };
 		66E399E428C9157000F8CC1D /* KidsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E328C9157000F8CC1D /* KidsListViewModel.swift */; };
 		66E399E628C9679300F8CC1D /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E528C9679300F8CC1D /* Kid.swift */; };
-		66E399E828CA51B800F8CC1D /* KidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E728CA51B800F8CC1D /* KidViewModel.swift */; };
+		66E399E828CA51B800F8CC1D /* KidVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E728CA51B800F8CC1D /* KidVM.swift */; };
 		66F0C6C028C590C600E9F656 /* blkchcry.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66F0C6BF28C590C600E9F656 /* blkchcry.ttf */; };
 		66F0C6C228C63ADF00E9F656 /* UnifrakturMaguntia-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66F0C6C128C63ADF00E9F656 /* UnifrakturMaguntia-Regular.ttf */; };
 		66F0C6C728C6442000E9F656 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0C6C628C6442000E9F656 /* SignUpView.swift */; };
@@ -35,7 +38,7 @@
 		6608272128C6A7810083E360 /* KidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsView.swift; sourceTree = "<group>"; };
 		6608272328C6A7AE0083E360 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		6608272528C6A7D20083E360 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
-		6608272828C7F1170083E360 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		6608272828C7F1170083E360 /* Webservice_Parent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice_Parent.swift; sourceTree = "<group>"; };
 		6608272B28C7F7B30083E360 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6608272E28C7FA1C0083E360 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		661CC84228C46C8C008DC13E /* SmartKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,9 +48,12 @@
 		661CC84C28C46C8D008DC13E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		661CC85528C46D28008DC13E /* sacramento.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sacramento.ttf; sourceTree = "<group>"; };
 		661CC85928C4744A008DC13E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		6659F57C28CA9D200029B6AF /* Webservice_Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice_Kid.swift; sourceTree = "<group>"; };
+		6659F57E28CAD1B50029B6AF /* KidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewModel.swift; sourceTree = "<group>"; };
+		6659F58028CAEB460029B6AF /* KidPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPlayView.swift; sourceTree = "<group>"; };
 		66E399E328C9157000F8CC1D /* KidsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListViewModel.swift; sourceTree = "<group>"; };
 		66E399E528C9679300F8CC1D /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
-		66E399E728CA51B800F8CC1D /* KidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewModel.swift; sourceTree = "<group>"; };
+		66E399E728CA51B800F8CC1D /* KidVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidVM.swift; sourceTree = "<group>"; };
 		66F0C6BF28C590C600E9F656 /* blkchcry.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = blkchcry.ttf; path = ../../../../../Downloads/blkchcry.ttf; sourceTree = "<group>"; };
 		66F0C6C128C63ADF00E9F656 /* UnifrakturMaguntia-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UnifrakturMaguntia-Regular.ttf"; sourceTree = "<group>"; };
 		66F0C6C628C6442000E9F656 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -69,7 +75,8 @@
 		6608272728C7F0ED0083E360 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6608272828C7F1170083E360 /* Webservice.swift */,
+				6608272828C7F1170083E360 /* Webservice_Parent.swift */,
+				6659F57C28CA9D200029B6AF /* Webservice_Kid.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -77,6 +84,7 @@
 		6608272A28C7F7A00083E360 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				66E399E728CA51B800F8CC1D /* KidVM.swift */,
 				6608272B28C7F7B30083E360 /* User.swift */,
 				66E399E528C9679300F8CC1D /* Kid.swift */,
 			);
@@ -88,7 +96,7 @@
 			children = (
 				6608272E28C7FA1C0083E360 /* LoginViewModel.swift */,
 				66E399E328C9157000F8CC1D /* KidsListViewModel.swift */,
-				66E399E728CA51B800F8CC1D /* KidViewModel.swift */,
+				6659F57E28CAD1B50029B6AF /* KidViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -121,6 +129,7 @@
 				66F0C6C628C6442000E9F656 /* SignUpView.swift */,
 				6608272128C6A7810083E360 /* KidsView.swift */,
 				6608272528C6A7D20083E360 /* PointsView.swift */,
+				6659F58028CAEB460029B6AF /* KidPlayView.swift */,
 				6608272328C6A7AE0083E360 /* MyProfileView.swift */,
 				66F0C6CA28C6846100E9F656 /* SignInView.swift */,
 				661CC84728C46C8C008DC13E /* ContentView.swift */,
@@ -224,13 +233,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				66F0C6CB28C6846100E9F656 /* SignInView.swift in Sources */,
-				66E399E828CA51B800F8CC1D /* KidViewModel.swift in Sources */,
+				66E399E828CA51B800F8CC1D /* KidVM.swift in Sources */,
 				6608272428C6A7AE0083E360 /* MyProfileView.swift in Sources */,
 				66F0C6C728C6442000E9F656 /* SignUpView.swift in Sources */,
 				66E399E428C9157000F8CC1D /* KidsListViewModel.swift in Sources */,
 				661CC84828C46C8C008DC13E /* ContentView.swift in Sources */,
-				6608272928C7F1170083E360 /* Webservice.swift in Sources */,
+				6608272928C7F1170083E360 /* Webservice_Parent.swift in Sources */,
+				6659F58128CAEB460029B6AF /* KidPlayView.swift in Sources */,
 				66F0C6C928C6580100E9F656 /* ButtonView.swift in Sources */,
+				6659F57D28CA9D200029B6AF /* Webservice_Kid.swift in Sources */,
 				6608272028C6A70F0083E360 /* ParentView.swift in Sources */,
 				661CC85A28C4744A008DC13E /* WelcomeView.swift in Sources */,
 				6608272F28C7FA1C0083E360 /* LoginViewModel.swift in Sources */,
@@ -239,6 +250,7 @@
 				6608272628C6A7D20083E360 /* PointsView.swift in Sources */,
 				661CC84628C46C8C008DC13E /* SmartKidsApp.swift in Sources */,
 				6608272228C6A7810083E360 /* KidsView.swift in Sources */,
+				6659F57F28CAD1B50029B6AF /* KidViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

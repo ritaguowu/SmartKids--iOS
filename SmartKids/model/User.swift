@@ -9,13 +9,13 @@ import Foundation
 
 struct User: Codable, CustomStringConvertible{
        
-    let _id: String
-    let user_name: String
-    let email: String
-    let password: String
-    let image: String
-    let parentId: String
-    let access_token: String
+    var _id: String = ""
+    var user_name: String = ""
+    var email: String = ""
+    var password: String = ""
+    var image: String = ""
+    var parentId: String = ""
+    var access_token: String = ""
 
     
     var description: String{
@@ -29,6 +29,33 @@ struct User: Codable, CustomStringConvertible{
                         ", access_token='" + access_token +
                         "}"
     }
+    
 }
+    func encodeObject(user: User, key: String) {
+        do {
+            let userData = try JSONEncoder().encode(user)
+            UserDefaults.standard.set(userData, forKey: key)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func decodeObject(key: String) -> User {
+        if let userData = UserDefaults.standard.data(forKey: key) {
+            do {
+                let userObject = try JSONDecoder().decode(User.self, from: userData)
+
+                print(userObject.user_name)
+                print(userObject.email)
+                return userObject
+
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return User()
+    }
+    
+    
 
 

@@ -28,7 +28,7 @@ struct LoginResponse: Codable{
     let user: User?
 }
 
-class Webservice{
+class Webservice_Parent{
     
     //SignIn
     func signIn(email: String, password: String, completion: @escaping (Result<User, AuthenticationError>) -> Void){

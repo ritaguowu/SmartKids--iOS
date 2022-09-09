@@ -7,26 +7,31 @@
 
 import Foundation
 
-struct KidViewModel{
+class KidViewModel: ObservableObject{
     
-    var kid: Kid
-    let id = UUID()
-    var _id: String    {
-        return kid._id
+    @Published var kid: Kid = Kid()
+    
+    func loadKid(kidId: String){
+        
+        let defaults = UserDefaults.standard
+        
+        guard let token = defaults.string(forKey: "jwtToken") else{
+            return
+        }
+        
+        Webservice_Kid().getKid(token: token, kidId: kidId){ result in
+            switch result{
+            case .success(let kid):
+                print(kid)
+                DispatchQueue.main.async {
+                    self.kid = kid
+                }
+            
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        }
     }
-    var access_token: String{
-        return kid.access_token
-    }
-    var parentId: String{
-        return kid.parentId
-    }
-    var user_name: String {
-        return kid.user_name
-    }
-    var image: String {
-        return kid.image
-    }
-    var points: Int{
-        return kid.points
-    }
+
 }

@@ -10,6 +10,7 @@ import Foundation
 class KidViewModel: ObservableObject{
     
     @Published var kid: Kid = Kid()
+    @Published var isValidKid = false
     
     func loadKid(kidId: String){
         
@@ -25,6 +26,7 @@ class KidViewModel: ObservableObject{
                 print(kid)
                 DispatchQueue.main.async {
                     self.kid = kid
+                    self.isValidKid = true
                 }
             
             case .failure(let error):

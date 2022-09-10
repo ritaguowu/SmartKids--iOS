@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct KidPlayView: View {
+    
+//    @Binding var kid: Kid
+    
     var body: some View {
-        Text("Let's play!")
+        Text("Hi I am kid")
     }
 }
 

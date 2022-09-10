@@ -8,12 +8,21 @@
 import Foundation
 
 struct Kid: Codable, CustomStringConvertible{
-    var _id: String = ""
-    var access_token: String = ""
-    var image: String  = ""
-    var parentId: String  = ""
-    var points: Int  = 0
-    var user_name: String  = ""
+    var _id: String
+    var access_token: String
+    var image: String
+    var parentId: String
+    var points: Int
+    var user_name: String
+    
+    init(){
+        _id = ""
+        user_name = ""
+        image = ""
+        parentId = ""
+        points = 0
+        access_token = ""
+    }
     
     var description: String{
         "User{" +

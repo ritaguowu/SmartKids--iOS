@@ -9,14 +9,23 @@ import Foundation
 
 struct User: Codable, CustomStringConvertible{
        
-    var _id: String = ""
-    var user_name: String = ""
-    var email: String = ""
-    var password: String = ""
-    var image: String = ""
-    var parentId: String = ""
-    var access_token: String = ""
+    var _id: String
+    var user_name: String
+    var email: String
+    var password: String
+    var image: String
+    var parentId: String
+    var access_token: String
 
+    init(){
+        _id = ""
+        user_name = ""
+        email = ""
+        password = ""
+        image = ""
+        parentId = ""
+        access_token = ""
+    }
     
     var description: String{
         "User{" +

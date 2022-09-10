@@ -10,9 +10,10 @@ import SwiftUI
 struct KidsView: View {
     @StateObject private var loginVM = LoginViewModel()
     @StateObject private var kidsListVM = KidsListViewModel()
-    
-    
-    let parent = decodeObject(key: "parent")
+    @StateObject private var kidViewModel = KidViewModel()
+
+//    let parent = decodeObject(key: "parent")
+
     
     var body: some View {
         ZStack{
@@ -27,8 +28,8 @@ struct KidsView: View {
                     .clipShape(Circle())
 
                 VStack{
-                    Text("\(parent.user_name)")
-                    Text("\(parent.email)")
+                    Text("\(loginVM.perant.user_name)")
+                    Text("\(loginVM.perant.email)")
                 }.foregroundColor(Color.white)
                 
                 Spacer()
@@ -43,9 +44,10 @@ struct KidsView: View {
 
                     List{
                         ForEach(kidsListVM.kids, id: \.id) { kid in
-                            Button(action: {
-                                
-                            }){
+                            Button(){
+                                kidViewModel.loadKid(kidId: kid._id)
+                            }
+                        label:{
                                 HStack{
                                     Image("default_kid")
                                         .resizable()
@@ -57,8 +59,17 @@ struct KidsView: View {
                                         .foregroundColor(Color.white)
                                     
                                 }
-                            }.listRowBackground(Color("Primary"))
-                        }
+                        }.fullScreenCover(isPresented: $kidViewModel.isValidKid){
+                            KidPlayView()
+                            }
+//                        .onDelete{indexSet in
+//                            kidsListVM.kids.remove(atOffsets: indexSet)
+//                        }
+                        }.listRowBackground(Color("Primary"))
+//                            .onMove{
+//                                indexSet, index in
+//                                kidsListVM.kids.move(fromOffsets: indexSet, toOffset: index)
+//                            }
                     }
                 }else{
                     Text("No kid has been found!")

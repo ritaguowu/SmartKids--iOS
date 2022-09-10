@@ -34,18 +34,18 @@ struct KidVM{
 
 func encodeObjectArray(kids: [Kid], key: String) {
     do {
-        let kidsData = try JSONEncoder().encode(kids)
-        UserDefaults.standard.set(kidsData, forKey: key)
+        let data = try JSONEncoder().encode(kids)
+        UserDefaults.standard.set(data, forKey: key)
     } catch {
         print(error.localizedDescription)
     }
 }
 
 func decodeObjectArray(key: String) -> [Kid] {
-    if let kidsData = UserDefaults.standard.data(forKey: key) {
+    if let data = UserDefaults.standard.data(forKey: key) {
         do {
-            let kidsObjectArray = try JSONDecoder().decode([Kid].self, from: kidsData)
-            return kidsObjectArray
+            let objectArray = try JSONDecoder().decode([Kid].self, from: data)
+            return objectArray
 
         } catch {
             print(error.localizedDescription)

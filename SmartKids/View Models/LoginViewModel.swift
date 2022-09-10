@@ -11,6 +11,7 @@ class LoginViewModel: ObservableObject{
 //    @Published var userName:String = ""
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var perant: User = User()
     
     //UI notification
     @Published var isAuthenticated: Bool = false
@@ -30,6 +31,7 @@ class LoginViewModel: ObservableObject{
                 //Switch back to main thread
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
+                    self.perant = user
                     
                     encodeObject(user: user, key: "parent")
                     

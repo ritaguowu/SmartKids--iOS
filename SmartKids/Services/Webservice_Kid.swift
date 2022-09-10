@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct LoadKidResponse: Codable{
+    let success: String?
+    let kid: Kid?
+}
+
+
 
 class Webservice_Kid{
     
@@ -18,7 +24,9 @@ class Webservice_Kid{
             return
         }
                 
-
+        print(urlString)
+        print(token)
+        
         let authorizationKey = "Bearer ".appending(token)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -32,7 +40,12 @@ class Webservice_Kid{
             }
             
 
-            guard let kid = try? JSONDecoder().decode(Kid.self, from: data) else{
+            guard let loadKidResponse = try? JSONDecoder().decode(LoadKidResponse.self, from: data) else{
+                completion(.failure(.decodingError))
+                return
+            }
+            
+            guard let kid = loadKidResponse.kid else{
                 completion(.failure(.decodingError))
                 return
             }

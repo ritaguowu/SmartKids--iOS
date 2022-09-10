@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct KidsView: View {
-    @StateObject private var loginVM = LoginViewModel()
+    @EnvironmentObject var loginVM : LoginViewModel
     @StateObject private var kidsListVM = KidsListViewModel()
     @StateObject private var kidViewModel = KidViewModel()
 
-//    let parent = decodeObject(key: "parent")
+    let parent = decodeObject(key: "parent")
 
     
     var body: some View {
+
         ZStack{
             Color("Secondary")
         
@@ -28,13 +29,15 @@ struct KidsView: View {
                     .clipShape(Circle())
 
                 VStack{
-                    Text("\(loginVM.perant.user_name)")
-                    Text("\(loginVM.perant.email)")
+//                    Text("\(parent.user_name)")
+//                    Text("\(parent.email)")
+                    Text("\(loginVM.perant!.user_name)")
+                    Text("\(loginVM.perant!.email)")
                 }.foregroundColor(Color.white)
                 
                 Spacer()
             }.background(Color("Secondary"))
-            .padding(30)
+            .padding()
             .onAppear{
                     kidsListVM.getAllKids()
                 }
@@ -44,9 +47,9 @@ struct KidsView: View {
 
                     List{
                         ForEach(kidsListVM.kids, id: \.id) { kid in
-                            Button(){
-                                kidViewModel.loadKid(kidId: kid._id)
-                            }
+
+                            NavigationLink(destination: KidPlayView(selectedKid: kid.kid),
+                                    
                         label:{
                                 HStack{
                                     Image("default_kid")
@@ -59,17 +62,11 @@ struct KidsView: View {
                                         .foregroundColor(Color.white)
                                     
                                 }
-                        }.fullScreenCover(isPresented: $kidViewModel.isValidKid){
-                            KidPlayView()
-                            }
-//                        .onDelete{indexSet in
-//                            kidsListVM.kids.remove(atOffsets: indexSet)
-//                        }
+                        })
+
                         }.listRowBackground(Color("Primary"))
-//                            .onMove{
-//                                indexSet, index in
-//                                kidsListVM.kids.move(fromOffsets: indexSet, toOffset: index)
-//                            }
+                            .padding(.leading)
+
                     }
                 }else{
                     Text("No kid has been found!")
@@ -77,6 +74,7 @@ struct KidsView: View {
                 }
             Spacer()
         }
+        
         }
     }
 }
@@ -85,6 +83,5 @@ struct KidsView: View {
 struct KidsView_Previews: PreviewProvider {
     static var previews: some View {
         KidsView()
-        
     }
 }

@@ -136,7 +136,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "62B1CAD9-2CA6-49AC-BE3C-ADFDF2EC3767"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SmartKids/View Models/LoginViewModel.swift"
@@ -158,8 +158,8 @@
             filePath = "SmartKids/SignInView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -312,7 +312,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "9E9646F5-C425-46FF-B8FB-9DD2DA5423B6"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SmartKids/View Models/KidsListViewModel.swift"
@@ -688,36 +688,84 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "79C54A76-8CB7-4BB8-88CF-E06391A846EB - e24269913fef1370"
+                  uuid = "79C54A76-8CB7-4BB8-88CF-E06391A846EB - 2051ab87fa40f36d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;SmartKids.Kid, SmartKids.NetworkError&gt;) -&gt; () in SmartKids.KidViewModel.loadKid(kidId: Swift.String, token: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;SmartKids.Kid, SmartKids.NetworkError&gt;) -&gt; () in SmartKids.KidViewModel.loadKid(kidId: Swift.String) -&gt; ()"
                   moduleName = "SmartKids"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wuguo/Desktop/SmartKids/SmartKids/SmartKids/View%20Models/KidViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
                   offsetFromSymbolStart = "228">
                </Location>
                <Location
-                  uuid = "79C54A76-8CB7-4BB8-88CF-E06391A846EB - e24269913fef1370"
+                  uuid = "79C54A76-8CB7-4BB8-88CF-E06391A846EB - 2051ab87fa40f36d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;SmartKids.Kid, SmartKids.NetworkError&gt;) -&gt; () in SmartKids.KidViewModel.loadKid(kidId: Swift.String, token: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;SmartKids.Kid, SmartKids.NetworkError&gt;) -&gt; () in SmartKids.KidViewModel.loadKid(kidId: Swift.String) -&gt; ()"
                   moduleName = "SmartKids"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wuguo/Desktop/SmartKids/SmartKids/SmartKids/View%20Models/KidViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
                   offsetFromSymbolStart = "776">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "84D062A8-3040-4E13-AF73-41E1FD1B3DBE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmartKids/View Models/KidsListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "getAllKids()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2630A9E7-E7F8-4F56-870D-8B8C2AC0F39F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmartKids/TabViews/KidsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4CE890B-FD19-4111-A5AF-F94951150343"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmartKids/TabViews/KidsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "KidsView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

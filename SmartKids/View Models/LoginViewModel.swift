@@ -8,10 +8,10 @@
 import Foundation
 
 class LoginViewModel: ObservableObject{
-//    @Published var userName:String = ""
+
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var perant: User = User()
+    @Published var perant: User?
     
     //UI notification
     @Published var isAuthenticated: Bool = false

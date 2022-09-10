@@ -9,15 +9,21 @@ import SwiftUI
 
 struct KidPlayView: View {
     
-//    @Binding var kid: Kid
+    let selectedKid: Kid
     
     var body: some View {
-        Text("Hi I am kid")
+        ZStack{
+            VStack{
+            Text("\(selectedKid.user_name)")
+            Text("\(selectedKid._id)")
+            }.padding(.all)
+            
+        }
     }
 }
 
 struct KidPlayView_Previews: PreviewProvider {
     static var previews: some View {
-        KidPlayView()
+        KidsView()
     }
 }

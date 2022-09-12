@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6608272028C6A70F0083E360 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608271F28C6A70F0083E360 /* ParentView.swift */; };
+		6608272028C6A70F0083E360 /* ParentTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608271F28C6A70F0083E360 /* ParentTabView.swift */; };
 		6608272228C6A7810083E360 /* KidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272128C6A7810083E360 /* KidsView.swift */; };
 		6608272428C6A7AE0083E360 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272328C6A7AE0083E360 /* MyProfileView.swift */; };
 		6608272628C6A7D20083E360 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6608272528C6A7D20083E360 /* PointsView.swift */; };
@@ -24,6 +24,9 @@
 		6659F57F28CAD1B50029B6AF /* KidViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659F57E28CAD1B50029B6AF /* KidViewModel.swift */; };
 		6659F58128CAEB460029B6AF /* KidPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659F58028CAEB460029B6AF /* KidPlayView.swift */; };
 		6659F58428CC234F0029B6AF /* KidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659F58328CC234F0029B6AF /* KidCell.swift */; };
+		66AF637A28CD8FAF001F83B0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF637928CD8FAF001F83B0 /* LoadingView.swift */; };
+		66AF637F28CE2B2E001F83B0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF637E28CE2B2E001F83B0 /* RegisterViewModel.swift */; };
+		66AF638128CE7881001F83B0 /* ParentInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF638028CE7881001F83B0 /* ParentInfoView.swift */; };
 		66E399E428C9157000F8CC1D /* KidsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E328C9157000F8CC1D /* KidsListViewModel.swift */; };
 		66E399E628C9679300F8CC1D /* Kid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E528C9679300F8CC1D /* Kid.swift */; };
 		66E399E828CA51B800F8CC1D /* KidVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E399E728CA51B800F8CC1D /* KidVM.swift */; };
@@ -35,7 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6608271F28C6A70F0083E360 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		6608271F28C6A70F0083E360 /* ParentTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTabView.swift; sourceTree = "<group>"; };
 		6608272128C6A7810083E360 /* KidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsView.swift; sourceTree = "<group>"; };
 		6608272328C6A7AE0083E360 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		6608272528C6A7D20083E360 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
@@ -53,6 +56,9 @@
 		6659F57E28CAD1B50029B6AF /* KidViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidViewModel.swift; sourceTree = "<group>"; };
 		6659F58028CAEB460029B6AF /* KidPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidPlayView.swift; sourceTree = "<group>"; };
 		6659F58328CC234F0029B6AF /* KidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidCell.swift; sourceTree = "<group>"; };
+		66AF637928CD8FAF001F83B0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		66AF637E28CE2B2E001F83B0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		66AF638028CE7881001F83B0 /* ParentInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentInfoView.swift; sourceTree = "<group>"; };
 		66E399E328C9157000F8CC1D /* KidsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidsListViewModel.swift; sourceTree = "<group>"; };
 		66E399E528C9679300F8CC1D /* Kid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kid.swift; sourceTree = "<group>"; };
 		66E399E728CA51B800F8CC1D /* KidVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidVM.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 			children = (
 				6608272E28C7FA1C0083E360 /* LoginViewModel.swift */,
 				66E399E328C9157000F8CC1D /* KidsListViewModel.swift */,
+				66AF637E28CE2B2E001F83B0 /* RegisterViewModel.swift */,
 				6659F57E28CAD1B50029B6AF /* KidViewModel.swift */,
 			);
 			path = "View Models";
@@ -162,10 +169,12 @@
 			isa = PBXGroup;
 			children = (
 				6608272128C6A7810083E360 /* KidsView.swift */,
-				6608271F28C6A70F0083E360 /* ParentView.swift */,
+				6608271F28C6A70F0083E360 /* ParentTabView.swift */,
+				66AF638028CE7881001F83B0 /* ParentInfoView.swift */,
 				6608272528C6A7D20083E360 /* PointsView.swift */,
 				6608272328C6A7AE0083E360 /* MyProfileView.swift */,
 				6659F58328CC234F0029B6AF /* KidCell.swift */,
+				66AF637928CD8FAF001F83B0 /* LoadingView.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -253,18 +262,21 @@
 			files = (
 				66F0C6CB28C6846100E9F656 /* SignInView.swift in Sources */,
 				66E399E828CA51B800F8CC1D /* KidVM.swift in Sources */,
+				66AF638128CE7881001F83B0 /* ParentInfoView.swift in Sources */,
 				6608272428C6A7AE0083E360 /* MyProfileView.swift in Sources */,
 				66F0C6C728C6442000E9F656 /* SignUpView.swift in Sources */,
 				6659F58428CC234F0029B6AF /* KidCell.swift in Sources */,
+				66AF637A28CD8FAF001F83B0 /* LoadingView.swift in Sources */,
 				66E399E428C9157000F8CC1D /* KidsListViewModel.swift in Sources */,
 				661CC84828C46C8C008DC13E /* ContentView.swift in Sources */,
 				6608272928C7F1170083E360 /* Webservice_Parent.swift in Sources */,
 				6659F58128CAEB460029B6AF /* KidPlayView.swift in Sources */,
 				66F0C6C928C6580100E9F656 /* ButtonView.swift in Sources */,
 				6659F57D28CA9D200029B6AF /* Webservice_Kid.swift in Sources */,
-				6608272028C6A70F0083E360 /* ParentView.swift in Sources */,
+				6608272028C6A70F0083E360 /* ParentTabView.swift in Sources */,
 				661CC85A28C4744A008DC13E /* WelcomeView.swift in Sources */,
 				6608272F28C7FA1C0083E360 /* LoginViewModel.swift in Sources */,
+				66AF637F28CE2B2E001F83B0 /* RegisterViewModel.swift in Sources */,
 				6608272C28C7F7B30083E360 /* User.swift in Sources */,
 				66E399E628C9679300F8CC1D /* Kid.swift in Sources */,
 				6608272628C6A7D20083E360 /* PointsView.swift in Sources */,

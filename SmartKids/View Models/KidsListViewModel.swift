@@ -70,4 +70,18 @@ class KidsListViewModel: ObservableObject{
         }
     }
     
+    //For Reference in the future
+    func addKidToList(_ kidvm: Kid){
+        var sameKid: Bool = false
+        for kidTemp in kids{
+            if (kidTemp.user_name == kidvm.user_name){
+                sameKid = true
+                break;
+            }
+        }
+        if (!sameKid){
+            kids.append(KidVM(kid: kidvm))
+        }
+    }
+    
 }

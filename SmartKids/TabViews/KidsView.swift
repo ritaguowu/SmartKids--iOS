@@ -8,80 +8,106 @@
 import SwiftUI
 
 struct KidsView: View {
-    @EnvironmentObject var loginVM : LoginViewModel
-    @StateObject private var kidsListVM = KidsListViewModel()
-    @StateObject private var kidViewModel = KidViewModel()
-
-    let parent = decodeObject(key: "parent")
-
-    
+    @EnvironmentObject var kidsListVM: KidsListViewModel
+    @StateObject var kidVM = KidViewModel()
+    @State var addKid = false
+     
     var body: some View {
-
-        ZStack{
-            Color("Secondary")
-        
-        VStack{
-            HStack{
-                Image("default_user")
-                    .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 60)
-                    .clipShape(Circle())
-
+        NavigationView{
                 VStack{
-//                    Text("\(parent.user_name)")
-//                    Text("\(parent.email)")
-                    Text("\(loginVM.perant!.user_name)")
-                    Text("\(loginVM.perant!.email)")
-                }.foregroundColor(Color.white)
-                
-                Spacer()
-            }.background(Color("Secondary"))
-            .padding()
-            .onAppear{
+                    HStack{
+                        ParentInfoView()
+                    }.background(Color("Secondary"))
+                        .padding()
+                        .onAppear{
+                            kidsListVM.getAllKids()
+                        }
+                    
+                    Group{
+                        if kidsListVM.kids.count > 0{
+                            
+                            List{
+                                Section{
+                                    ForEach(kidsListVM.kids, id: \.id) { kid in
+                                        
+                                        NavigationLink(destination: KidPlayView(selectedKid: kid.kid),
+                                                       
+                                                       label:{
+                                            KidCell(kid: kid.kid)
+                                        })
+                                        
+                                    }.onDelete(perform: delete)
+                                }.listRowBackground(Color("Primary"))
+                                    .padding(.leading)
+                            }.background(Color.secondary)
+                            
+                        }else{
+                            Text("No kid has been found!")
+                                .foregroundColor(Color.white)
+                        }
+                        Spacer()
+                    }
+                }.padding(.horizontal).navigationBarItems(trailing:
+                        Button(action: {
+                    self.addKid = true
+                }, label: {
+                    Image(systemName: "plus.circle.fill")
+                })
+                )
+            
+        }.sheet(isPresented: $addKid) {
+            VStack{
+                Text("Kid Name 🖊")
+                    .padding(30)
+                    
+                TextField("Kid Name", text: $kidVM.kidName)
+                    .padding(.horizontal)
+                        .frame(height: 55)
+                        .background(Color(#colorLiteral(red: 0.9364585876, green: 0.9716410041, blue: 1, alpha: 1)))
+                        .foregroundColor(Color.black)
+                        .cornerRadius(10)
+                    Button(action:{
+                       
+                        kidVM.addKid(kidName: kidVM.kidName)
+                        
+//                        if (kidVM.isValidKid){
+                            
+//                              kidsListVM.addKidToList(kidVM.kid)
+
+//                        }
+                        self.addKid = false
+                        
+                    } , label: {
+                        ButtonView(text: "SAVE")
+                    })
+                }.padding(100)
+                .onDisappear(){
                     kidsListVM.getAllKids()
                 }
-
-            
-                if kidsListVM.kids.count > 0{
-
-                    List{
-                        ForEach(kidsListVM.kids, id: \.id) { kid in
-
-                            NavigationLink(destination: KidPlayView(selectedKid: kid.kid),
-                                    
-                        label:{
-                                HStack{
-                                    Image("default_kid")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 50, height: 70)
-                                        .clipShape(Circle())
-
-                                    Text("\(kid.user_name)")
-                                        .foregroundColor(Color.white)
-                                    
-                                }
-                        })
-
-                        }.listRowBackground(Color("Primary"))
-                            .padding(.leading)
-
-                    }
-                }else{
-                    Text("No kid has been found!")
-                        .foregroundColor(Color.white)
-                }
-            Spacer()
-        }
-        
-        }
+            }
     }
+    
+    
+    func delete(at offsets: IndexSet) {
+        offsets.forEach{
+            index in
+            let deleteKid = kidsListVM.kids[index]
+            kidVM.deleteKid(kidId: deleteKid._id)
+        }        
+        kidsListVM.kids.remove(atOffsets: offsets)
+
+    }
+    
+
+    
 }
+
 
 
 struct KidsView_Previews: PreviewProvider {
     static var previews: some View {
-        KidsView()
+        KidsView().environmentObject(KidViewModel())
+            .environmentObject(LoginViewModel())
+            .environmentObject(KidsListViewModel())
     }
 }

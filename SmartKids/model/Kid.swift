@@ -44,3 +44,27 @@ struct KidsResponse: Codable {
     var user: [Kid] = Array()
 
 }
+
+
+func encodeKidObject(kid: Kid, key: String) {
+    do {
+        let kidData = try JSONEncoder().encode(kid)
+        UserDefaults.standard.set(kidData, forKey: key)
+    } catch {
+        print(error.localizedDescription)
+    }
+}
+
+func decodeKidObject(key: String) -> Kid {
+    if let kidData = UserDefaults.standard.data(forKey: key) {
+        do {
+            let kidObject = try JSONDecoder().decode(Kid.self, from: kidData)
+
+            return kidObject
+
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    return Kid()
+}

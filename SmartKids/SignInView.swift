@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SignInView: View {
-    
-    @StateObject var loginVM = LoginViewModel()
-    @State private var isFirstLogin = true
+    @EnvironmentObject var loginVM : LoginViewModel
+
+    @State private var errorMessage = ""
     
     var body: some View {
         VStack {
@@ -26,7 +26,7 @@ struct SignInView: View {
             }
             
             VStack{
-                Text((self.isFirstLogin && !loginVM.isAuthenticated) ? "" : "Sorry, the user is not correct!")
+                Text("\(errorMessage)")
                     .foregroundColor(Color.red)
                 
                 TextField("Email", text: $loginVM.email)
@@ -39,8 +39,10 @@ struct SignInView: View {
             }
             
             Button(){
-                self.isFirstLogin = false
                 loginVM.login()
+                if loginVM.isAuthenticated == false{
+                    errorMessage = "Sorry, wrong use information! "
+                }
                 
             } label:{
                 ButtonView(text: "Sign In")
@@ -49,16 +51,18 @@ struct SignInView: View {
             //.sheet mode: which you can pull down the screen and close it
             //.fullScreenCover
                 .fullScreenCover(isPresented: $loginVM.isAuthenticated){
-                    NavigationView{
-                        ParentView()
-                    }
+//                    NavigationView{
+//                        return ParentView().environmentObject(self.loginVM)
+//                    }
+                    ParentView().environmentObject(self.loginVM)
+                        .environmentObject(KidsListViewModel())
                     
                 }
             
             Spacer(minLength: 250)
             
         }.padding(40)
-        .environmentObject(loginVM)
+
         
     }
     

@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State var username = ""
-    @State var email = ""
-    @State var password = ""
     
+    @StateObject var registerVM = RegisterViewModel()
     
     var body: some View {
         VStack {
@@ -22,28 +20,39 @@ struct SignUpView: View {
                 .padding(25)
             Spacer()
             
-            TextField("Name", text: $username)
+            TextField("Name", text: $registerVM.username)
                 .padding()
                 .textViewStyle()
                 
 
             
-            TextField("Email", text: $email)
+            TextField("Email", text: $registerVM.email)
                 .padding()
                 .textViewStyle()
 
             
-            SecureField("Password", text: $password)
+            SecureField("Password", text: $registerVM.password)
                 .padding()
                 .textViewStyle()
 
  
             Button(){
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                registerVM.register()
             } label:{
                 ButtonView(text: "Sign Up")
-            }.cornerRadius(15)
-                .padding(30)
+            }
+                .cornerRadius(15)
+                    .padding(30)
+                //.sheet mode: which you can pull down the screen and close it
+                //.fullScreenCover
+                    .fullScreenCover(isPresented: $registerVM.isAuthenticated){
+//                        NavigationView{
+                            return ParentView().environmentObject(self.registerVM)
+                                .environmentObject(KidsListViewModel())
+
+//                        }
+                    }
+                
 
             Spacer(minLength: 180)
         

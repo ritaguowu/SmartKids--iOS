@@ -12,17 +12,20 @@ struct ParentView: View {
     var body: some View {
 
         TabView{
+
             KidsView()
                 .tabItem{
                     Image(systemName: "house")
                     Text("Kids")
                 }
-            MyProfileView()
+            
+            PointsView()
                 .tabItem{
                     Image(systemName: "plus.circle")
                     Text("Points")
                 }
-            PointsView()
+                
+            MyProfileView()
                 .tabItem{
                     Image(systemName: "gearshape.fill")
                     Text("Setting")

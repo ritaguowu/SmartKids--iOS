@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @StateObject var loginVM = LoginViewModel()
+    @StateObject var kidVM = KidViewModel()
+    @StateObject var kidsListVM = KidsListViewModel()
+    
     @State private var showSignUp: Bool = false;
     @State private var showSignIn: Bool = false;
     
-    @StateObject private var loginVM = LoginViewModel()
     
     var body: some View {
 
@@ -53,14 +56,16 @@ struct WelcomeView: View {
 //                         NavigationLink(destination: ParentView(), isActive: $loginVM.isAuthenticated){
 //                         }
                          
-                         NavigationLink(destination: SignInView(), isActive: $showSignIn){
+                         NavigationLink(destination: SignInView().environmentObject(self.loginVM), isActive: $showSignIn){
                              EmptyView()
                          }
                      }
                  }
                  
              }.padding(.bottom, 50)
-
+            .environmentObject(loginVM)
+            .environmentObject(kidVM)
+            .environmentObject(kidsListVM)
          }
 
 }

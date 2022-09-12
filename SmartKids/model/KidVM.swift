@@ -11,6 +11,11 @@ struct KidVM{
     
     var kid: Kid
     let id = UUID()
+    
+    init(kid: Kid){
+        self.kid = kid
+    }
+    
     var _id: String    {
         return kid._id
     }

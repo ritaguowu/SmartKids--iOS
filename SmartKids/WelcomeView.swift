@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @StateObject var loginVM = LoginViewModel()
-    @StateObject var kidVM = KidViewModel()
-    @StateObject var kidsListVM = KidsListViewModel()
+    @EnvironmentObject var loginVM: LoginViewModel
     
     @State private var showSignUp: Bool = false;
     @State private var showSignIn: Bool = false;
     
     
     var body: some View {
+        
+//        if (UserDefaults.standard.bool(forKey:"login")){
+//
+//              NavigationLink(destination: ParentView().environmentObject(self.loginVM)
+//                    .environmentObject(KidsListViewModel()), isActive: $loginVM.isAuthenticated){
+//                    EmptyView()
+//                }
+//
+//        }else{
 
              VStack {
                  Text("SmartKids")
@@ -46,27 +53,23 @@ struct WelcomeView: View {
                              EmptyView()
                          }
                      }.padding(.bottom, 10)
-                     
-                     
+
                      Group{
                          Button("I have an account") {
                              showSignIn = true
                          }
-//
-//                         NavigationLink(destination: ParentView(), isActive: $loginVM.isAuthenticated){
-//                         }
-                         
                          NavigationLink(destination: SignInView().environmentObject(self.loginVM), isActive: $showSignIn){
                              EmptyView()
                          }
+                     
                      }
                  }
-                 
+             
              }.padding(.bottom, 50)
-            .environmentObject(loginVM)
-            .environmentObject(kidVM)
-            .environmentObject(kidsListVM)
-         }
+            
+            }
+//    }
+
 
 }
 
@@ -75,5 +78,3 @@ struct WelcomeView_Previews: PreviewProvider {
         WelcomeView()
     }
 }
-
-

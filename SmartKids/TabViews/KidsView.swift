@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct KidsView: View {
-    @EnvironmentObject var kidsListVM: KidsListViewModel
+    @StateObject var kidsListVM = KidsListViewModel()
     @StateObject var kidVM = KidViewModel()
     @State var addKid = false
      
@@ -75,6 +75,7 @@ struct KidsView: View {
 //                              kidsListVM.addKidToList(kidVM.kid)
 
 //                        }
+                        kidVM.kidName = ""
                         self.addKid = false
                         
                     } , label: {

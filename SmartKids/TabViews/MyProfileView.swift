@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct MyProfileView: View {
+    @EnvironmentObject var loginVM: LoginViewModel
+
+    
     var body: some View {
-        Text("My Profile")
+        VStack{
+            HStack{
+                ParentInfoView()
+            }.background(Color("Secondary"))
+                .padding(.leading)
+            
+            Group{
+                
+                Text("My Profit")
+                    .padding(.bottom,30)
+                    .foregroundColor(Color.yellow)
+                Text("My Message")
+                    .padding(.bottom,30)
+                    .foregroundColor(Color.yellow)
+                Button("Logout") {
+                    loginVM.isLoggedIn = false
+                }
+            
+                Spacer()
+                
+            }
+        }.background(Color.blue)
     }
 }
 

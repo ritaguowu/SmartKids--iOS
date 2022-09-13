@@ -12,6 +12,7 @@ class KidViewModel: ObservableObject{
     @Published var kid: Kid = Kid()
     @Published var isValidKid = false
     @Published var isDeleted = false
+    @Published var isUpdated = false
     @Published var kidName: String = ""
     
     func loadKid(kidId: String){
@@ -91,6 +92,30 @@ class KidViewModel: ObservableObject{
         }
     }
     
+    
+    func updateKid(kid: Kid){
+        
+        let defaults = UserDefaults.standard
+        
+        guard let token = defaults.string(forKey: "jwtToken") else{
+            return
+        }
+        
+        Webservice_Kid().updateKid(token: token,kid: kid){ result in
+           switch result{
+                case .success(let kid):
+                    print(kid)
+                    DispatchQueue.main.async {
+                        self.kid = kid
+                        self.isUpdated = true
+                    }
+                
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            
+        }
+    }
     
     
 }

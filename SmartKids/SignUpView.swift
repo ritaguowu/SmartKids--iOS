@@ -45,18 +45,20 @@ struct SignUpView: View {
                     .padding(30)
                 //.sheet mode: which you can pull down the screen and close it
                 //.fullScreenCover
-                    .fullScreenCover(isPresented: $registerVM.isAuthenticated){
+//                    .fullScreenCover(isPresented: $registerVM.isAuthenticated){
 //                        NavigationView{
-                            return ParentView().environmentObject(self.registerVM)
-                                .environmentObject(KidsListViewModel())
+//                            return ParentView().environmentObject(self.registerVM)
+//                                .environmentObject(KidsListViewModel())
 
 //                        }
-                    }
+//                    }
                 
 
             Spacer(minLength: 180)
         
         }.padding(30)
+            .navigate(to: SignInView(), when: $registerVM.isAuthenticated)
+            .environmentObject(LoginViewModel())
 
     }
 }

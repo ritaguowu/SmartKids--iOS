@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var loginVM : LoginViewModel
+    
     @State private var hasTimeElapsed = false
     
     var body: some View {
@@ -27,12 +29,31 @@ struct ContentView: View {
              }
          }.task(delayText)
          .navigate(to: WelcomeView(), when: $hasTimeElapsed)
+         .onAppear{
+             loginVM.getParent()
+         }
+
     }
     
     @Sendable private func delayText() async {
         // Delay of 2.5 seconds (1 second = 1_000_000_000 nanoseconds)
         try? await Task.sleep(nanoseconds: 2_500_000_000)
         hasTimeElapsed = true
+    }
+}
+
+extension UIImage {
+    var base64: String? {
+        self.jpegData(compressionQuality: 1)?.base64EncodedString()
+    }
+}
+
+extension String {
+    var imageFromBase64: UIImage? {
+        guard let imageData = Data(base64Encoded: self, options: .ignoreUnknownCharacters) else {
+            return nil
+        }
+        return UIImage(data: imageData)
     }
 }
 
@@ -59,6 +80,7 @@ extension View{
             }
         }
     }
+    
     
     func textViewStyle() -> some View{
         modifier(ShadowViewModifier())

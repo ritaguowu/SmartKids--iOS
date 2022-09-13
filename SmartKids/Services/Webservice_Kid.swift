@@ -21,6 +21,13 @@ struct AddKidResponse: Codable{
     let user: Kid?
 }
 
+struct UpdateKidRequestBoday: Codable{
+    let user_name: String
+    let image: String
+    let points: Int
+}
+
+
 class Webservice_Kid{
     
     func getKid(token: String, kidId: String, completion: @escaping (Result<Kid, NetworkError>) -> Void){
@@ -142,6 +149,50 @@ class Webservice_Kid{
             
         }.resume()
     }
+    
+    func updateKid(token: String, kid: Kid,completion: @escaping (Result<Kid, NetworkError>) -> Void){
+        
+        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kid._id
+        
+        guard let url = URL(string: urlString) else{
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        let body = UpdateKidRequestBoday(user_name: kid.user_name, image: kid.image, points: kid.points )
+        
+        print(urlString)
+        
+        var request = URLRequest(url: url)
+        
+        let authorizationKey = "Bearer ".appending(token)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONEncoder().encode(body)
+        request.addValue(authorizationKey, forHTTPHeaderField: "Authorization")
+         
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
+            guard let data = data, error == nil else{
+                completion(.failure(.noData))
+                return
+            }
+            
+
+            guard let updateKidResponse = try? JSONDecoder().decode(LoadKidResponse.self, from: data) else{
+                completion(.failure(.decodingError))
+                return
+            }
+            
+            guard let kid = updateKidResponse.kid else{
+                completion(.failure(.decodingError))
+                return
+            }
+            
+            
+            completion(.success(kid))
+            
+        }.resume()
+    }
+    
     
     
 

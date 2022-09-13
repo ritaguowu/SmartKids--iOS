@@ -15,6 +15,17 @@ class LoginViewModel: ObservableObject{
     
     //UI notification
     @Published var isAuthenticated: Bool = false
+    
+    @Published var isLoggedIn: Bool{
+        didSet{
+        UserDefaults.standard.set(isLoggedIn, forKey: "login")
+            }
+        }
+        
+    init(){
+        self.isLoggedIn = false
+    }
+            
         
     func login(){
         
@@ -24,13 +35,15 @@ class LoginViewModel: ObservableObject{
             
             switch result{
                 case .success(let user):
-//                print(user)
+                print(user)
                 defaults.setValue(user.access_token, forKey: "jwtToken")
                 defaults.setValue(user._id, forKey: "parentId")
   
                 //Switch back to main thread
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
+                    self.isLoggedIn = true
+                    
                     self.perant = user
                     
                     encodeObject(user: user, key: "parent")
@@ -45,6 +58,41 @@ class LoginViewModel: ObservableObject{
         }
     }
     
+    func getParent(){
+    
+        let defaults = UserDefaults.standard
+        
+        guard let parentId = defaults.string(forKey: "parentId") else{
+            return
+        }
+        
+        guard let token = defaults.string(forKey: "jwtToken") else{
+            return
+        }
+        
+        Webservice_Parent().getParent(token: token, parentId: parentId){ result in
+            
+            switch result{
+                case .success(let user):
+                print(user)
+
+                //Switch back to main thread
+                DispatchQueue.main.async {
+                    self.isAuthenticated = true
+                    self.isLoggedIn = true
+                    
+                    self.perant = user
+                    
+                    encodeObject(user: user, key: "parent")
+                }
+                
+        
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+        }
+    }
     
     func signout(){
         let defaults = UserDefaults.standard

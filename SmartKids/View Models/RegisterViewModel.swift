@@ -31,7 +31,7 @@ class RegisterViewModel: ObservableObject{
                 DispatchQueue.main.async {
                     self.parent = user
                     self.isAuthenticated = true
-                    
+                    print(user)
                     encodeObject(user: user, key: "parent")
                 }
             

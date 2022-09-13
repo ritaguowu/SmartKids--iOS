@@ -12,7 +12,9 @@ struct SignInView: View {
 
     @State private var errorMessage = ""
     
+    
     var body: some View {
+
         VStack {
             VStack{
                 Spacer()
@@ -40,10 +42,12 @@ struct SignInView: View {
             
             Button(){
                 loginVM.login()
-                if loginVM.isAuthenticated == false{
-                    errorMessage = "Sorry, wrong use information! "
-                }
-                
+//                if loginVM.isAuthenticated == false{
+//                    errorMessage = "Sorry, wrong use information! "
+//                }
+//                else{
+//                    loginVM.isLoggedIn = true
+//                }
             } label:{
                 ButtonView(text: "Sign In")
             }.cornerRadius(15)
@@ -62,7 +66,6 @@ struct SignInView: View {
             Spacer(minLength: 250)
             
         }.padding(40)
-
         
     }
     

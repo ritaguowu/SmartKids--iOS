@@ -39,37 +39,6 @@ class KidsListViewModel: ObservableObject{
     }
     
     
-    func getParent(){
-    
-        let defaults = UserDefaults.standard
-        
-        guard let parentId = defaults.string(forKey: "parentId") else{
-            return
-        }
-        
-        guard let token = defaults.string(forKey: "jwtToken") else{
-            return
-        }
-        
-        Webservice_Parent().getParent(token: token, parentId: parentId){ result in
-            
-            switch result{
-                case .success(let user):
-                print(user)
-
-                //Switch back to main thread
-                DispatchQueue.main.async {
-//                    self.isAuthenticated = true
-                }
-                
-        
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
-            
-        }
-    }
-    
     //For Reference in the future
     func addKidToList(_ kidvm: Kid){
         var sameKid: Bool = false

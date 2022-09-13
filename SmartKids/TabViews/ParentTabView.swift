@@ -24,13 +24,12 @@ struct ParentView: View {
                     Image(systemName: "plus.circle")
                     Text("Points")
                 }
-                
-            MyProfileView()
+            
+            SettingsView()
                 .tabItem{
                     Image(systemName: "gearshape.fill")
                     Text("Setting")
                 }
-            
         }
     }
 }

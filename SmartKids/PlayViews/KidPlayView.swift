@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct KidPlayView: View {
-    @StateObject var kidVM = KidViewModel()
+    @EnvironmentObject var kidVM: KidViewModel
     
     let selectedKid: Kid
     

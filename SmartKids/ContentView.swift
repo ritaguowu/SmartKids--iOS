@@ -8,31 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var loginVM : LoginViewModel
-    
+  
     @State private var hasTimeElapsed = false
     
     var body: some View {
-
-         ZStack{
-             Image("ic_splash_background")
-                 .resizable()
-                 .aspectRatio( contentMode: .fill)
-                 .edgesIgnoringSafeArea(.all)
-             VStack {
-                 Text("SmartKids")
-                     .font(Font.custom("sacramento", size: 50))
-                     .foregroundColor(Color.white)
-                     .bold()
-                 .padding()
-
-             }
-         }.task(delayText)
-         .navigate(to: WelcomeView(), when: $hasTimeElapsed)
-         .onAppear{
-             loginVM.getParent()
-         }
-
+        
+        ZStack{
+            Image("ic_splash_background")
+                .resizable()
+                .aspectRatio( contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("SmartKids")
+                    .font(Font.custom("sacramento", size: 50))
+                    .foregroundColor(Color.white)
+                    .bold()
+                    .padding()
+                
+            }
+        }.task(delayText)
+            .navigate(to: WelcomeView(), when: $hasTimeElapsed)
     }
     
     @Sendable private func delayText() async {

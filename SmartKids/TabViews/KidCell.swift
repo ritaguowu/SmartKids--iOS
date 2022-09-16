@@ -25,8 +25,33 @@ struct KidCell: View {
     }
 }
 
-//struct KidCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        KidCell(kid: Kid)
-//    }
-//}
+struct KidPointsCell: View {
+    
+    let kid: Kid
+    
+    var body: some View {
+        HStack{
+            Image("default_kid")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 50, height: 70)
+                .clipShape(Circle())
+
+            Spacer()
+            Text("\(kid.user_name)")
+                .foregroundColor(Color.white)
+            
+            Spacer()
+            Text("\(kid.points)")
+                .foregroundColor(Color.white)
+            Spacer()
+        }.padding(.leading)
+    }
+}
+
+
+struct KidCell_Previews: PreviewProvider {
+    static var previews: some View {
+        KidCell(kid: Kid())
+    }
+}

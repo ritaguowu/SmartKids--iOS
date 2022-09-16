@@ -16,6 +16,7 @@ struct ParentInfoView: View {
 
     
     var body: some View {
+            
         if (parent.image == "")
         {
             Image(uiImage: ParentInfoView.defaultImage!)
@@ -24,7 +25,7 @@ struct ParentInfoView: View {
                 .frame(width: 80, height: 60)
                 .clipShape(Circle())
         }else{
-            Image(uiImage: parent.image.imageFromBase64! )
+            Image(uiImage: loginVM.perant!.image.imageFromBase64! )
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 80, height: 60)

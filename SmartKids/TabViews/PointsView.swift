@@ -11,57 +11,40 @@ struct PointsView: View {
     
     @EnvironmentObject var kidsListVM: KidsListViewModel
     
-//    @State var fruits:[String] = [
-//        "apple", "ornage", "banana", "peach"
-//    ]
-//
-    var body: some View {
-            VStack {
-                
-                List{
-        
-                        ForEach(kidsListVM.kids, id: \.id){kid in
-                            KidCell(kid: kid.kid)
-                        }.onDelete(perform: delete)
-                    
-                }.navigationTitle("SwiftUI")
-                    .toolbar {
-                        ToolbarItemGroup(placement: .bottomBar) {
-                            Button("First") {
-                                print("Pressed")
-                            }
 
-                            Button("Second") {
-                                print("Pressed")
-                            }
-                        }
-                    }
+    var body: some View {
+        VStack{
+            HStack{
+                ParentInfoView()
+            }.background(Color("Secondary"))
+                .padding(.top, 50)
+                .onAppear{
+                    kidsListVM.getAllKids()
+                }
+            
+            Group{
+                if kidsListVM.kids.count > 0{
+                    
+                    List{
+                            ForEach(kidsListVM.kids, id: \.id) { kid in
+                                
+                                KidPointsCell(kid: kid.kid)
+                            }.listRowBackground(Color("Primary"))
+                            .padding(.leading)
+                    }.background(Color.secondary)
+                    
+                }else{
+                    Text("No kid has been found!")
+                        .foregroundColor(Color.white)
+                }
+                
+            }
+            Spacer()
                 }
             }
-            
-
-    func delete(at offsets: IndexSet) {
-        kidsListVM.kids.remove(atOffsets: offsets)
-    }
 }
-//        VStack{
-//            Text("Kids Points")
-//                .bold()
-//                .foregroundColor(Color.blue)
-//
-//
-//            List{
-//                ForEach(kidsListVM.kids, id: \.id) { kid in
-//
-//                        KidCell(kid: kid.kid)
-//
-//                }.onDelete(perform: delete)
-//            }.background(Color.blue)
-//            .listStyle(PlainListStyle())
-//        }
-//    }
-//
-//}
+
+
 
 struct PointsView_Previews: PreviewProvider {
     static var previews: some View {

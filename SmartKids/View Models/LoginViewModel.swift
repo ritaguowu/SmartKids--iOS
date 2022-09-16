@@ -12,9 +12,11 @@ class LoginViewModel: ObservableObject{
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var perant: User?
+    @Published var showErrorMessage = false
     
     //UI notification
     @Published var isAuthenticated: Bool = false
+    @Published var isUpdated: Bool = false
     
     @Published var isLoggedIn: Bool{
         didSet{
@@ -35,23 +37,26 @@ class LoginViewModel: ObservableObject{
             
             switch result{
                 case .success(let user):
-                print(user)
-                defaults.setValue(user.access_token, forKey: "jwtToken")
-                defaults.setValue(user._id, forKey: "parentId")
-  
-                //Switch back to main thread
-                DispatchQueue.main.async {
-                    self.isAuthenticated = true
-                    self.isLoggedIn = true
+                    print(user)
+                    defaults.setValue(user.access_token, forKey: "jwtToken")
+                    defaults.setValue(user._id, forKey: "parentId")
+      
+                    //Switch back to main thread
+                    DispatchQueue.main.async {
+                        self.isAuthenticated = true
+                        self.isLoggedIn = true
+                        
+                        self.perant = user
+                        
+                        encodeObject(user: user, key: "parent")
                     
-                    self.perant = user
-                    
-                    encodeObject(user: user, key: "parent")
-                    
-                }
+                    }
                 
         
                 case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.showErrorMessage = true
+                    }
                     print(error.localizedDescription)
             }
             
@@ -80,6 +85,37 @@ class LoginViewModel: ObservableObject{
                 DispatchQueue.main.async {
                     self.isAuthenticated = true
                     self.isLoggedIn = true
+                    
+                    self.perant = user
+                    
+                    encodeObject(user: user, key: "parent")
+                }
+                
+        
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+            
+        }
+    }
+    
+    func updateParent(userNew: User){
+    
+        let defaults = UserDefaults.standard
+        
+        guard let token = defaults.string(forKey: "jwtToken") else{
+            return
+        }
+        
+        Webservice_Parent().updateParent(token: token, userNew: userNew ){ result in
+            
+            switch result{
+                case .success(let user):
+                print(user)
+
+                //Switch back to main thread
+                DispatchQueue.main.async {
+                    self.isUpdated = true
                     
                     self.perant = user
                     

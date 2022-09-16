@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     @EnvironmentObject var loginVM : LoginViewModel
-
+    
     @State private var errorMessage = ""
     
     
@@ -27,9 +27,7 @@ struct SignInView: View {
                  }
                  
                  VStack{
-                     Text("\(errorMessage)")
-                         .foregroundColor(Color.red)
-                     
+                                          
                      TextField("Email", text: $loginVM.email)
                          .padding()
                          .textViewStyle()
@@ -49,11 +47,15 @@ struct SignInView: View {
                      ButtonView(text: "Sign In")
                  }.cornerRadius(15)
                      .padding(30)
+                     .alert(isPresented: self.$loginVM.showErrorMessage){
+                         Alert(title: Text("Error"), message: Text("Sorry, wrong use information!"), dismissButton: .default(Text("OK")))
+                     }
                  //.sheet mode: which you can pull down the screen and close it
                  //.fullScreenCover
                      .fullScreenCover(isPresented: $loginVM.isAuthenticated){
+                         //One application only need one NavigationView. Or it will show mutltiple navigation bar
      //                    NavigationView{
-     //                        return ParentView().environmentObject(self.loginVM)
+     //                        return           ParentView().environmentObject(self.loginVM)
      //                    }
                          ParentView().environmentObject(self.loginVM)
                              .environmentObject(KidsListViewModel())

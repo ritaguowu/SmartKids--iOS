@@ -34,12 +34,19 @@ struct userResponse: Codable{
     let user: User?
 }
 
+struct updateParentRequestBody: Codable{
+    let user_name: String
+    let password: String
+    let image: String
+}
+
 class Webservice_Parent{
     
     //SignUp
     func signUp(username: String, email: String, password: String, completion: @escaping (Result<User, AuthenticationError>) -> Void){
         
-        guard let url = URL(string: "http://192.168.31.235:5000/api/v1/parent") else{
+//        guard let url = URL(string: "http://192.168.31.235:5000/api/v1/parent") else{
+        guard let url = URL(string: "http://174.129.202.241:5000/api/v1/parent") else{
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
         }
@@ -78,7 +85,8 @@ class Webservice_Parent{
     //SignIn
     func signIn(email: String, password: String, completion: @escaping (Result<User, AuthenticationError>) -> Void){
         
-        guard let url = URL(string: "http://192.168.31.235:5000/api/v1/auth") else{
+//        guard let url = URL(string: "http://192.168.31.235:5000/api/v1/auth") else{
+        guard let url = URL(string: "http://174.129.202.241:5000/api/v1/auth") else{
             completion(.failure(.custom(errorMessage: "URL is not correct")))
             return
         }
@@ -91,6 +99,8 @@ class Webservice_Parent{
         request.httpBody = try? JSONEncoder().encode(body)
         
         URLSession.shared.dataTask(with: request){(data, response, error) in
+            
+            
             guard let data = data, error == nil else{
                 completion(.failure(.custom(errorMessage: "No data")))
                 return
@@ -115,7 +125,9 @@ class Webservice_Parent{
     
     //Get all kids information
     func getAllKids(token: String, parentId: String, completion: @escaping (Result<[Kid], NetworkError>) -> Void){
-        let urlString = "http://192.168.31.235:5000/api/v1/kids?parentId=" + parentId
+//        let urlString = "http://192.168.31.235:5000/api/v1/kids?parentId=" + parentId
+        
+        let urlString = "http://174.129.202.241:5000/api/v1/kids?parentId=" + parentId
         print("urlString", urlString)
         print("token", token)
         
@@ -159,7 +171,9 @@ class Webservice_Parent{
     }
     
     func getParent(token: String, parentId: String, completion: @escaping (Result<User, NetworkError>) -> Void){
-        let urlString = "http://192.168.31.235:5000/api/v1/parent?token=" + token + "&parentId=" + parentId
+//        let urlString = "http://192.168.31.235:5000/api/v1/parent?token=" + token + "&parentId=" + parentId
+        
+        let urlString = "http://174.129.202.241:5000/api/v1/parent?token=" + token + "&parentId=" + parentId
         print("urlString", urlString)
         print("token", token)
         
@@ -195,5 +209,99 @@ class Webservice_Parent{
         }.resume()
     }
     
+    
+    func updateParent(token: String, userNew: User,completion: @escaping (Result<User, NetworkError>) -> Void){
+        
+//        let urlString = "http://192.168.31.235:5000/api/v1/parent?email=" + userNew.email
+        let urlString = "http://174.129.202.241:5000/api/v1/parent?email=" + userNew.email
+        
+        guard let url = URL(string: urlString) else{
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        let body = updateParentRequestBody(user_name: userNew.user_name, password: userNew.password, image: userNew.image )
+        
+        print(urlString)
+        print(token)
+        
+        var request = URLRequest(url: url)
+        
+        let authorizationKey = "Bearer ".appending(token)
+        request.httpMethod = "PUT"
+        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(body)
+        request.addValue(authorizationKey, forHTTPHeaderField: "Authorization")
+        
+        print(request)
+        
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
+            guard let data = data, error == nil else{
+                completion(.failure(.noData))
+                return
+            }
+
+            guard let response = try? JSONDecoder().decode(userResponse.self, from: data) else{
+                completion(.failure(.decodingError))
+                return
+            }
+            
+            guard let user = response.user else{
+                completion(.failure(.decodingError))
+                return
+            }
+            
+            completion(.success(user))
+            
+        }.resume()
+    
+    }
+//    func updateKid(token: String, kid: Kid,completion: @escaping (Result<Kid, NetworkError>) -> Void){
+//
+//        let urlString = "http://174.129.202.241:5000/api/v1/kid?kidId=" + kid._id
+//
+//        guard let url = URL(string: urlString) else{
+//            completion(.failure(.invalidURL))
+//            return
+//        }
+//
+//        let points = kid.points
+//        let user_name = kid.user_name
+//        let kidImage = kid.image
+//
+//        let body = UpdateKidRequestBoday(user_name: user_name, image: kidImage, points: points )
+//
+//
+//        var request = URLRequest(url: url)
+//
+//        let authorizationKey = "Bearer ".appending(token)
+//        request.httpMethod = "PUT"
+//        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+//        request.httpBody = try? JSONEncoder().encode(body)
+//        request.addValue(authorizationKey, forHTTPHeaderField: "Authorization")
+//
+//        print(request)
+//
+//        URLSession.shared.dataTask(with: request){ (data, response, error) in
+//            guard let data = data, error == nil else{
+//                completion(.failure(.noData))
+//                return
+//            }
+//
+//
+//            guard let kidNew = try? JSONDecoder().decode(UpdateKidResponse.self, from: data) else{
+//                completion(.failure(.decodingError))
+//                return
+//            }
+//
+//            guard let kid1 = kidNew.kid else{
+//                completion(.failure(.decodingError))
+//                return
+//            }
+//
+//            completion(.success(kid1))
+//
+//        }.resume()
+//    }
     
 }

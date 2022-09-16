@@ -10,21 +10,35 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var loginVM: LoginViewModel
     @State private var isLogout = false
+    @State private var isShowMyProfile = false
+
     
     var body: some View {
         VStack{
             HStack{
                 ParentInfoView()
             }.background(Color("Secondary"))
-                .padding(.top, 30)
+                .padding(.top, 50)
             
             VStack{
                 HStack{
-                    Text("My Profit")
-                        .fontWeight(.bold)
-                        .font(.system(size: 22))
-                        .foregroundColor(Color.yellow)
-                        .padding(30)
+                    Group{
+                        Button() {
+                                isShowMyProfile = true
+                        }label: {
+                            Text("My Profile")
+                                .fontWeight(.bold)
+                                .font(.system(size: 22))
+                                .foregroundColor(Color.yellow)
+                                .padding(30)
+                                .padding(.top, 30)
+                                .padding(.bottom, 30)
+                        }.foregroundColor(Color.yellow)
+                            .sheet(isPresented: $isShowMyProfile){
+                                MyProfileView().environmentObject(self.loginVM)
+                                
+                            }
+                    }
                     Spacer()
                 }
                 HStack{
@@ -37,32 +51,37 @@ struct SettingsView: View {
                 }
                 
                 HStack{
-                    Button() {
-                        loginVM.isLoggedIn = false
-                    }label: {
-                        Text("Log out")
-                            .fontWeight(.bold)
-                            .font(.system(size: 22))
-                            .foregroundColor(Color.yellow)
-                            .padding(30)
-                            .padding(.top, 50)
-                            .padding(.bottom, 200)
-                    }.foregroundColor(Color.yellow)
-            
+                    Group{
+                        Button() {
+                            self.isLogout = true
+                            loginVM.isLoggedIn = false
+                            UserDefaults.standard.setValue("", forKey: "jwtToken")
+                            UserDefaults.standard.setValue("", forKey: "parentId")
+                            
+                        }label: {
+                            Text("Log out")
+                                .fontWeight(.bold)
+                                .font(.system(size: 22))
+                                .foregroundColor(Color.yellow)
+                                .padding(30)
+                                .padding(.top, 50)
+                                .padding(.bottom, 120)
+                        }.foregroundColor(Color.yellow)
+                    }
                     Spacer()
                 }
                 
-//                NavigationLink(destination: WelcomeView(), isActive: $loginVM.isLoggedIn){
-//                    EmptyView()
-//                }
             }.background(Color("Primary"))
+            
+        }.fullScreenCover(isPresented: $isLogout){
+            ContentView()
             
         }
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-    }
-}
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView( parentUser: <#User#>)
+//    }
+//}

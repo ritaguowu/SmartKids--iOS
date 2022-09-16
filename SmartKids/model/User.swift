@@ -27,6 +27,16 @@ struct User: Codable, CustomStringConvertible{
         access_token = ""
     }
     
+    init(_id: String, user_name: String, email: String, password: String, image: String, access_token: String, parentId: String){
+        self.user_name = user_name
+        self.email = email
+        self.password = password
+        self.image = image
+        self._id = _id
+        self.access_token = access_token
+        self.parentId = parentId        
+    }
+    
     var description: String{
         "User{" +
                         "user_id='" + _id + "\'" +

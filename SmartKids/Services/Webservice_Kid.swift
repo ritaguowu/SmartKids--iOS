@@ -31,7 +31,9 @@ struct UpdateKidRequestBoday: Codable{
 class Webservice_Kid{
     
     func getKid(token: String, kidId: String, completion: @escaping (Result<Kid, NetworkError>) -> Void){
-        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kidId
+        let urlString = "http://174.129.202.241:5000/api/v1/kid?kidId=" + kidId
+        
+//        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kidId
         
         guard let url = URL(string: urlString) else{
             completion(.failure(.invalidURL))
@@ -71,7 +73,9 @@ class Webservice_Kid{
     }
     
     func deleteKid(token: String, kidId: String, completion: @escaping (Result<String, NetworkError>) -> Void){
-        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kidId
+        let urlString = "http://174.129.202.241:5000/api/v1/kid?kidId=" + kidId
+        
+//        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kidId
         
         guard let url = URL(string: urlString) else{
             completion(.failure(.invalidURL))
@@ -112,7 +116,8 @@ class Webservice_Kid{
     
     func addKid(token: String, kidName: String, parentId: String,completion: @escaping (Result<Kid, NetworkError>) -> Void){
         
-        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidName=" + kidName + "&parentId=" + parentId
+//        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidName=" + kidName + "&parentId=" + parentId
+        let urlString = "http://174.129.202.241:5000/api/v1/kid?kidName=" + kidName + "&parentId=" + parentId
         
         guard let url = URL(string: urlString) else{
             completion(.failure(.invalidURL))
@@ -152,7 +157,8 @@ class Webservice_Kid{
     
     func updateKid(token: String, kid: Kid,completion: @escaping (Result<Kid, NetworkError>) -> Void){
         
-        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kid._id
+//        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kid._id
+        let urlString = "http://174.129.202.241:5000/api/v1/kid?kidId=" + kid._id
         
         guard let url = URL(string: urlString) else{
             completion(.failure(.invalidURL))

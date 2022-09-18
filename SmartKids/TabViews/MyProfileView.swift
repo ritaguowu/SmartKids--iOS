@@ -95,7 +95,6 @@ struct MyProfileView: View {
                     parent.password = pwd1
                     }
                     convertImageToString()
-                    encodeObject(user: parent, key: "parent")
                     loginVM.updateParent(userNew: parent)
                     presentationMode.wrappedValue.dismiss()
                 }

@@ -15,7 +15,6 @@ struct WelcomeView: View {
     @State private var showSignUp: Bool = false;
     @State private var showSignIn: Bool = false;
     
-    
     var body: some View {
         
         VStack {
@@ -50,22 +49,30 @@ struct WelcomeView: View {
                 
                 Group{
                     Button("I have an account") {
-                        showSignIn = true
+                        let iskownUser = UserDefaults.standard.bool(forKey: "isLoggedIn")
+                        if (!iskownUser){
+                            showSignIn = true
+                        }else{
+                            loginVM.getParent()
+
+                        }
                     }
-                    //
-                    //                         NavigationLink(destination: ParentView(), isActive: $loginVM.isAuthenticated){
-                    //                         }
-                    
                     NavigationLink(destination: SignInView().environmentObject(self.loginVM), isActive: $showSignIn){
                         EmptyView()
                     }
                 }
             }
             
-        }.padding(.bottom, 50)
+        } .fullScreenCover(isPresented: $loginVM.isLoaded){
+            ParentView().environmentObject(self.loginVM)
+                .environmentObject(KidsListViewModel())
+            
+        }
+        .padding(.bottom, 50)
             .environmentObject(loginVM)
             .environmentObject(kidVM)
             .environmentObject(kidsListVM)
+            
     }
     
 }

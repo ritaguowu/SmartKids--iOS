@@ -55,8 +55,14 @@ struct SettingsView: View {
                         Button() {
                             self.isLogout = true
                             loginVM.isLoggedIn = false
-                            UserDefaults.standard.setValue("", forKey: "jwtToken")
-                            UserDefaults.standard.setValue("", forKey: "parentId")
+//                            UserDefaults.standard.setValue("", forKey: "jwtToken")
+//                            UserDefaults.standard.setValue("", forKey: "parentId")
+                            
+                        
+//                            Remove all Keys
+                            if let appDomain = Bundle.main.bundleIdentifier {
+                           UserDefaults.standard.removePersistentDomain(forName: appDomain)
+                            }
                             
                         }label: {
                             Text("Log out")

@@ -17,17 +17,9 @@ class LoginViewModel: ObservableObject{
     //UI notification
     @Published var isAuthenticated: Bool = false
     @Published var isUpdated: Bool = false
-    
-    @Published var isLoggedIn: Bool{
-        didSet{
-        UserDefaults.standard.set(isLoggedIn, forKey: "login")
-            }
-        }
-        
-    init(){
-        self.isLoggedIn = false
-    }
-            
+    @Published var isLoaded: Bool = false
+    @Published var isLoggedIn: Bool = false
+ 
         
     func login(){
         
@@ -40,6 +32,7 @@ class LoginViewModel: ObservableObject{
                     print(user)
                     defaults.setValue(user.access_token, forKey: "jwtToken")
                     defaults.setValue(user._id, forKey: "parentId")
+                    defaults.set(true, forKey: "isLoggedIn")
       
                     //Switch back to main thread
                     DispatchQueue.main.async {
@@ -79,16 +72,16 @@ class LoginViewModel: ObservableObject{
             
             switch result{
                 case .success(let user):
+                defaults.setValue(user.access_token, forKey: "jwtToken")
                 print(user)
 
+                encodeObject(user: user, key: "parent")
+                
                 //Switch back to main thread
                 DispatchQueue.main.async {
-                    self.isAuthenticated = true
-                    self.isLoggedIn = true
-                    
                     self.perant = user
+                    self.isLoaded = true
                     
-                    encodeObject(user: user, key: "parent")
                 }
                 
         

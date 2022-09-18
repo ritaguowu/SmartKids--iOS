@@ -30,7 +30,7 @@ struct KidsView: View {
                                 Section{
                                     ForEach(kidsListVM.kids, id: \.id) { kid in
                                         
-                                        NavigationLink(destination: KidPlayView(selectedKid: kid.kid).environmentObject(kidVM),
+                                        NavigationLink(destination: KidPlayView(bigPoints: kid.points, selectedKid: kid.kid).environmentObject(kidVM),
                                                        
                                                        label:{
                                             KidCell(kid: kid.kid)
@@ -94,7 +94,7 @@ struct KidsView: View {
             index in
             let deleteKid = kidsListVM.kids[index]
             kidVM.deleteKid(kidId: deleteKid._id)
-        }        
+        }
         kidsListVM.kids.remove(atOffsets: offsets)
 
     }
@@ -107,6 +107,8 @@ struct KidsView: View {
 
 struct KidsView_Previews: PreviewProvider {
     static var previews: some View {
-        KidsView()
+        KidsView().environmentObject(KidViewModel())
+            .environmentObject(LoginViewModel())
+            .environmentObject(KidsListViewModel())
     }
 }

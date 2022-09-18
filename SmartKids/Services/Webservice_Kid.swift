@@ -28,6 +28,12 @@ struct UpdateKidRequestBoday: Codable{
 }
 
 
+
+struct UpdateKidResponse: Codable{
+    let kid: Kid?
+    let success: String?
+}
+
 class Webservice_Kid{
     
     func getKid(token: String, kidId: String, completion: @escaping (Result<Kid, NetworkError>) -> Void){
@@ -157,7 +163,6 @@ class Webservice_Kid{
     
     func updateKid(token: String, kid: Kid,completion: @escaping (Result<Kid, NetworkError>) -> Void){
         
-//        let urlString = "http://192.168.31.235:5000/api/v1/kid?kidId=" + kid._id
         let urlString = "http://174.129.202.241:5000/api/v1/kid?kidId=" + kid._id
         
         guard let url = URL(string: urlString) else{
@@ -165,41 +170,44 @@ class Webservice_Kid{
             return
         }
         
-        let body = UpdateKidRequestBoday(user_name: kid.user_name, image: kid.image, points: kid.points )
+        let points = kid.points
+        let user_name = kid.user_name
+        let kidImage = kid.image
         
-        print(urlString)
+        let body = UpdateKidRequestBoday(user_name: user_name, image: kidImage, points: points )
+        
         
         var request = URLRequest(url: url)
         
         let authorizationKey = "Bearer ".appending(token)
-        request.httpMethod = "POST"
+        request.httpMethod = "PUT"
+        request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
         request.addValue(authorizationKey, forHTTPHeaderField: "Authorization")
-         
+        
+        print(request)
+        
         URLSession.shared.dataTask(with: request){ (data, response, error) in
             guard let data = data, error == nil else{
                 completion(.failure(.noData))
                 return
             }
             
-
-            guard let updateKidResponse = try? JSONDecoder().decode(LoadKidResponse.self, from: data) else{
+            
+            guard let kidNew = try? JSONDecoder().decode(UpdateKidResponse.self, from: data) else{
                 completion(.failure(.decodingError))
                 return
             }
             
-            guard let kid = updateKidResponse.kid else{
+            guard let kid1 = kidNew.kid else{
                 completion(.failure(.decodingError))
                 return
             }
             
-            
-            completion(.success(kid))
+            completion(.success(kid1))
             
         }.resume()
     }
-    
-    
     
 
 }
